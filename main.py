@@ -35,7 +35,7 @@ class Player:
 			margin_index = self.top_margin.index(x)
 			margin_index1 = self.top_margin.index(x1)
 			if name == 'ship_4_cell':
-				if abs(y - y1) == 4 and abs(margin_index - margin_index1) == 0 or abs(y - y1) == 0 and abs(margin_index - margin_index1) == 4:
+				if abs(y - y1) == 3 and abs(margin_index - margin_index1) == 0 or abs(y - y1) == 0 and abs(margin_index - margin_index1) == 3:
 					if y1 > y:
 						count = 0
 						for _ in range(5):
@@ -51,8 +51,81 @@ class Player:
 							y -= 1
 
 
+					elif margin_index1 > margin_index:
+						print('!')
+						for i in range(margin_index, margin_index1 + 1):
+							self.player_field[y + 1][i] = '#'
+
+					elif margin_index > margin_index1:
+						for i in range(margin_index1, margin_index + 1):
+							self.player_field[y + 1][i] = '#'
+
+			elif name == 'ship_3_cell':
+				print(abs(y- y1), abs(margin_index - margin_index1))
+				if abs(y - y1) == 2 and abs(margin_index - margin_index1) == 0 or abs(y - y1) == 0 and abs(margin_index - margin_index1) == 2:
+					if y1 > y:
+						count = 0
+						for _ in range(3):
+							count = 0
+							self.player_field[y + 1][margin_index] = '#'
+							y += 1
+
+					elif y > y1:
+						count = 0
+						for _ in range(3):
+							count = 0
+							self.player_field[y + 1][margin_index] = '#'
+							y -= 1
+
+
+					elif margin_index1 > margin_index:
+						for i in range(margin_index, margin_index1 + 1):
+							self.player_field[y + 1][i] = '#'
+
+					elif margin_index > margin_index1:
+						for i in range(margin_index1, margin_index + 1):
+							self.player_field[y + 1][i] = '#'
+
+
 				else:
 					return 'Введены неверные координаты построения'
+
+
+			elif name == 'ship_2_cell':
+				print(y, y1, margin_index, margin_index1)
+				if abs(y - y1) + 1 == 2 and abs(margin_index - margin_index1 - 1) == 1 or abs(y - y1 + 1) == 1 and abs(margin_index - margin_index1) + 1 == 2:
+					if y1 > y:
+						count = 0
+						for _ in range(2):
+							count = 0
+							self.player_field[y + 1][margin_index] = '#'
+							y += 1
+
+					elif y > y1:
+						count = 0
+						for _ in range(2):
+							count = 0
+							self.player_field[y + 1][margin_index] = '#'
+							y -= 1
+
+
+					elif margin_index1 > margin_index:
+						for i in range(margin_index, margin_index1 + 1):
+							self.player_field[y + 1][i] = '#'
+
+					elif margin_index > margin_index1:
+						for i in range(margin_index1, margin_index + 1):
+							self.player_field[y + 1][i] = '#'
+
+
+				else:
+					return 'Введены неверные координаты построения'
+
+
+			elif name == 'ship_1_cell':
+				self.player_field[y + 1][margin_index] = '#'
+
+
 
 
 
@@ -68,7 +141,12 @@ class Player:
 
 
 player1 = Player()
-player1.buildField(player1.ship_4_cell, 'ship_4_cell', 'В', 5, 'В', 9)
+player1.buildField(player1.ship_4_cell, 'ship_4_cell', 'А', 0, 'А', 3)
+player1.buildField(player1.ship_3_cell, 'ship_3_cell', 'К', 0, 'К', 2)
+player1.buildField(player1.ship_3_cell, 'ship_3_cell', 'А', 9, 'В', 9)
+player1.buildField(player1.ship_2_cell, 'ship_2_cell', 'Г', 4, 'Г', 5)
+player1.buildField(player1.ship_2_cell, 'ship_2_cell', 'Е', 7, 'Ж', 7)
+player1.buildField(player1.ship_2_cell, 'ship_1_cell', 'И', 7, 'И', 7)
 for i in player1.getTheNumberOfShips():
 	print(i)
 for i in player1.player_field:
