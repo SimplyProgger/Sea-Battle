@@ -125,6 +125,17 @@ class Player:
 
 
 
+	def hittingTheCage(self, x, y):
+		margin_index = self.top_margin.index(x)
+		if self.player_field[y + 1][margin_index] == colored('#', 'green'):
+			self.player_field[y + 1][margin_index] = colored('+', 'red')
+			return 'Попал!'
+		else:
+			self.player_field[y + 1][margin_index] = colored('+', 'white')
+			return 'Не попал!'
+
+
+
 
 	def getTheNumberOfShips(self):
 		
@@ -144,5 +155,7 @@ player1.buildField(player1.ship_3_cell, 'ship_3_cell', 'А', 9, 'В', 9)
 player1.buildField(player1.ship_2_cell, 'ship_2_cell', 'Г', 4, 'Г', 5)
 player1.buildField(player1.ship_2_cell, 'ship_2_cell', 'Е', 7, 'Ж', 7)
 player1.buildField(player1.ship_2_cell, 'ship_1_cell', 'И', 7, 'И', 7)
+print(player1.hittingTheCage('В', 8))
+print(player1.hittingTheCage('А', 0))
 for i in player1.player_field:
 	print(' '.join([str(j) for j in i]))
