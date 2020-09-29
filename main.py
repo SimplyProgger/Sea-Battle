@@ -8,10 +8,7 @@ class Player:
 	def __init__(self):
 
 		self.player_field = self.createField()
-		self.ship_4_cell = 1
-		self.ship_3_cell = 2
-		self.ship_2_cell = 3
-		self.ship_1_cell = 4
+		self.ship_rules = [1, 1, 1, 1, 2, 2, 2, 3, 3, 4]
 
 
 
@@ -30,8 +27,8 @@ class Player:
 		return player_field
 
 
-	def buildField(self, ship, name, x, y, x1, y1):
-		if ship != 0:
+	def buildField(self, name, x, y, x1, y1):
+		if name != 0:
 			margin_index = self.top_margin.index(x)
 			margin_index1 = self.top_margin.index(x1)
 			if name == 'ship_4_cell':
@@ -149,12 +146,12 @@ class Player:
 
 
 player1 = Player()
-player1.buildField(player1.ship_4_cell, 'ship_4_cell', 'А', 0, 'А', 3)
-player1.buildField(player1.ship_3_cell, 'ship_3_cell', 'К', 0, 'К', 2)
-player1.buildField(player1.ship_3_cell, 'ship_3_cell', 'А', 9, 'В', 9)
-player1.buildField(player1.ship_2_cell, 'ship_2_cell', 'Г', 4, 'Г', 5)
-player1.buildField(player1.ship_2_cell, 'ship_2_cell', 'Е', 7, 'Ж', 7)
-player1.buildField(player1.ship_2_cell, 'ship_1_cell', 'И', 7, 'И', 7)
+player1.buildField('ship_4_cell', 'А', 0, 'А', 3)
+player1.buildField('ship_3_cell', 'К', 0, 'К', 2)
+player1.buildField('ship_3_cell', 'А', 9, 'В', 9)
+player1.buildField('ship_2_cell', 'Г', 4, 'Г', 5)
+player1.buildField('ship_2_cell', 'Е', 7, 'Ж', 7)
+player1.buildField('ship_1_cell', 'И', 7, 'И', 7)
 print(player1.hittingTheCage('В', 8))
 print(player1.hittingTheCage('А', 0))
 for i in player1.player_field:
